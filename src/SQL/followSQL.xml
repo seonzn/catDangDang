@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="follow">
+  	<!-- 팔로우 리스트 [선준] -->
+  	<select id="getFollows" parameterType="string" resultType="string">
+  		select user_to from follows where user_from = #{value}
+  	</select>
+  	
+  	<!-- 팔로우했는지 여부 검사 [선준] -->
+  	<select id="followCh" parameterType="map" resultType="int">
+  		select count(*) from follows where user_from=#{fromId} and user_to=#{toId}
+  	</select>
+  	
+  	<!-- 팔로우 수 검색 [선준] -->
+  	<select id="getFlwCnt" parameterType="string" resultType="int">
+  		select count(*) from follows where user_from=#{value}
+  	</select>
+  	
+  	<!-- 팔로워 수 검색 [선준] -->
+  	<select id="getFlwerCnt" parameterType="string" resultType="int">
+  		select count(*) from follows where user_to=#{value}
+  	</select>
+  	
+  	<!-- 팔로워 리스트 [선준] -->
+  	<select id="getFollowers" parameterType="string" resultType="string">
+  		select user_from from follows where user_to = #{value}
+  	</select>
+  </mapper>
